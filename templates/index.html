@@ -12,7 +12,7 @@
    This will keep scripts at the page end and a navbar you add on later
    intact. #}
 {% block content %}
-  <div class="container">
+  <div class="fa-home">
   {%- with messages = get_flashed_messages(with_categories=True) %}
   {%- if messages %}
     <div class="row">
@@ -22,15 +22,13 @@
     </div>
   {%- endif %}
   {%- endwith %}
-    <div class="jumbotron">
-      <h1>Welcome to Flask-Bootstrap</h1>
-      <p>This example application demonstrates some (but not all!) of the
-      features of <a href="http://pythonhosted.org/Flask-Bootstrap">
-      Flask-Bootstrap</a>.</p>
+      <h1>Welcome to Drive Pay</h1>
+      <p><a href="{{ url_for('register') }}">
+      Register</a></p>
       <p>
-        <a class="btn btn-lg btn-default" role="button"
-           href="http://pythonhosted.org/Flask-Bootstrap" >Show docs</a>
+      <p><a href="{{ url_for('auth') }}">
+      Auth</a></p>
+      <p>
       </p>
-    </div>
    </div>
 {%- endblock %}
