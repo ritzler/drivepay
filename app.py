@@ -65,7 +65,7 @@ def submit_amount():
             member = auth['cm']
             amount = auth['amount']
         else:
-            return render_template('error.html', error = "Unathorized")
+            return render_template('error.html', error = "Unauthorized")
     except Exception as e:
         return render_template('error.html', error = e)
     return render_template('auth_submit.html', member = member, amount = amount)
