@@ -55,10 +55,14 @@ def submit_amount():
     try:
         filename = secure_filename(image.filename)
         filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        dw_auth(filepath, amount, secret)
+        auth = dw_auth(filepath, amount, secret)
+        data = json.loads(auth.text)
+        member = data['cm']
+        amount = data['amount']
+        authorized = data['match']
     except Exception as e:
         return render_template('error.html', error = e)
-    return render_template('auth_submit.html')
+    return render_template('auth_submit.html', member = member, authorized = authorized, amount = amount)
 
 @app.route('/process', methods=['POST'])
 def process():
