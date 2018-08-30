@@ -1,0 +1,43 @@
+
+{%- extends "base.html" %}
+
+
+{% block content %}
+    <script>
+  function previewImage(input) {
+    var preview = document.getElementById('preview');
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        preview.setAttribute('src', e.target.result);
+	    preview.setAttribute('height', 'auto');
+	    preview.setAttribute('width', 'auto');
+		preview.setAttribute('class', 'form-control');
+      }
+      reader.readAsDataURL(input.files[0]);
+    } else {
+      preview.setAttribute('src', 'upload.png');
+    }
+  }
+</script>
+<body class="text-center">
+
+<div class="text-center mb-4">
+	<h1 class="h3 mb-3 font-weight-normal">Drive Pay</h1>
+	<form class="form-signin" method="POST" enctype="multipart/form-data" action="{{ url_for('submit_amount') }}">
+		<label>Enter the amount:</label><br />
+		<input type="amount" name="amount" class="form-control"><br />
+		<label class="form-control" class="btn btn-default">Upload your image   <img id="preview" src="{{ url_for('static', filename='upload.png') }}" height="30px" width="auto" /><br/>
+		<input type="file" name="imageFile" id="imageFile" hidden class="form-control" onchange="previewImage(this)" accept="image/*"/>
+		</label>
+		<br/>
+
+		<label>Enter your SECRET code:</label><br />
+		<input type="password" class="form-control" name="secret"><br />
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+	</form>
+	<p class="mt-5 mb-3 text-muted">&copy; Game Changers 2018</p>
+</div>
+</body>
+{%- endblock %}
+
