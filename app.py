@@ -30,8 +30,13 @@ def dw_auth(image, amount, secret):
         'Content-type': 'application/json'
     }
     r = requests.get(url, headers=headers)
-    print(r.text)
-    return r
+    if r.status_code == 200:
+        return json.loads(r.text)
+    else:
+        return None
+
+def authorize_match(match):
+    return
 
 @app.route('/')
 def index():
