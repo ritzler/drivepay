@@ -26,8 +26,6 @@
 <div class="text-center mb-4">
 	<h1 class="h3 mb-3 font-weight-normal">Drive Pay</h1>
 	<form class="form-signin" method="POST" enctype="multipart/form-data" action="{{ url_for('process') }}">
-		<label>Enter the License Plate Number:</label><br />
-		<input type="plate" name="plate" class="form-control"><br />
 		<label class="form-control" class="btn btn-default">Upload your image   <img id="preview" src="{{ url_for('static', filename='upload.png') }}" height="30px" width="auto" /><br/>
 		<input type="file" name="imageFile" id="imageFile" hidden class="form-control" onchange="previewImage(this)" accept="image/*"/>
 		</label>
