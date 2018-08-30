@@ -19,7 +19,7 @@ def dw_register(image, secret):
     }
     r = requests.get(url, headers=headers)
     print(r.text)
-    return
+    return r
 
 def dw_auth(image, amount, secret):
     url = 'http://localhost:8080/v1/auth'
@@ -53,7 +53,9 @@ def submit_amount():
     image = request.files['imageFile']
     amount = request.form['amount']
     try:
-        dw_auth(image.filename, amount, secret)
+        filename = secure_filename(image.filename)
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        dw_auth(filepath, amount, secret)
     except Exception as e:
         return render_template('error.html', error = e)
     return render_template('auth_submit.html')
@@ -71,9 +73,10 @@ def process():
             reg = dw_register(filepath, secret)
             data = json.loads(reg.text)
             cm = data['cm']
+            plate = data['extract']
         except Exception as e:
             return render_template('error.html', error = e)
-    return render_template('thankyou.html', cm = cm)
+    return render_template('thankyou.html', cm = cm, plate = plate)
 
 if __name__ == '__main__':
     app.run(debug=True)
