@@ -62,10 +62,8 @@ def submit_amount():
     try:
         auth = dw_auth(filepath, amount, secret)
         if auth:
-            data = json.loads(auth.text)
-            member = data['cm']
-            amount = data['amount']
-            authorized = data['match']
+            member = auth['cm']
+            amount = auth['amount']
     except Exception as e:
         return render_template('error.html', error = e)
     return render_template('auth_submit.html', member = member, amount = amount)
