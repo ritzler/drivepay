@@ -72,7 +72,6 @@ def submit_amount():
 
 @app.route('/process', methods=['POST'])
 def process():
-    plate = request.form['plate']
     secret = request.form['secret']
     image = request.files['imageFile']
     if image:
