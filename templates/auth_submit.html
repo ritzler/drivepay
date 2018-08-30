@@ -7,8 +7,9 @@
 {% block content %}
         {{ super() }}
 <body class="text-center">
-<h1 class="h3 mb-3 font-weight-normal">{{ member }} was authorized for {{ amount }}</h1><br/>
-<h1 class="h3 mb-3 font-weight-normal">Thank you for using Amex Drive Pay</h1><br/>
+<h1 class="h3 mb-3 font-weight-normal">
+{{ member }} was authorized for ${{ amount }}<br/>
+Thank you for using Amex Drive Pay</h1>
 
 </body>
 {%  endblock %}
